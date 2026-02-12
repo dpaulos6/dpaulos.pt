@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
+import TargetCursor from "@/components/ui/target-cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +27,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen w-screen overflow-x-hidden font-mono antialiased`}
       >
+        <Navbar />
         {children}
+
+        <TargetCursor
+          hideDefaultCursor
+          hoverDuration={0.2}
+          parallaxOn
+          spinDuration={2}
+        />
       </body>
     </html>
   );
