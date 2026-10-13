@@ -1,384 +1,374 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import {
+  ArrowDownRight,
+  Boxes,
+  Code2,
+  GitFork,
+  Link2,
+  MapPin,
+  Server,
+} from "lucide-react";
 import { Container } from "@/components/portfolio/container";
+import { CopyEmail } from "@/components/portfolio/copy-email";
 import { ExperienceItem } from "@/components/portfolio/experience-item";
 import { ProjectCard } from "@/components/portfolio/project-card";
 import { Section } from "@/components/portfolio/section";
 import { TechBadge } from "@/components/portfolio/tech-badge";
-import { TerminalCard } from "@/components/portfolio/terminal-card";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  education,
+  experiences,
+  personStructuredData,
+  primaryNavigation,
+  projects,
+  stackGroups,
+} from "@/lib/portfolio-data";
+import { siteConfig } from "@/lib/site";
 
-const projects = [
-  {
-    name: "luma",
-    description:
-      "A personal finance and cash-planning app for seeing money ahead, with recurring income, expenses, targets, and a calm 12-month projection.",
-    tags: ["Next.js", "cashflow", "personal finance"],
-  },
-  {
-    name: "digestify",
-    description:
-      "A focused content utility for reducing noise into something readable, structured, and easier to act on.",
-    tags: ["content", "clarity", "tooling"],
-  },
-  {
-    name: "wouldyoubot",
-    description:
-      "A compact product experiment built around one simple interaction, minimal surface area, and fast feedback.",
-    tags: ["interaction", "experiment", "product thinking"],
-  },
-  {
-    name: "portfolio",
-    description:
-      "The public home for my work, built as a clean developer-product page instead of a traditional résumé site.",
-    tags: ["portfolio", "minimal UI", "Next.js"],
-  },
-];
-
-const experience = [
-  {
-    company: "Bomsite",
-    role: "Full-stack developer",
-    date: "Sep 2025 - Current",
-    bullets: [
-      "Building and maintaining business web applications with C#, ASP.NET, Razor, Entity Framework, and SQL Server.",
-      "Working on PHC-connected workflows, integrations, exports, dashboards, and operational tools for real clients.",
-      "Balancing enterprise requirements with cleaner interfaces, safer data flows, and more maintainable code.",
-    ],
-  },
-  {
-    company: "Independent projects",
-    role: "Product-minded development",
-    date: "Ongoing",
-    bullets: [
-      "Designing small tools like Luma with a focus on practical usefulness, calm visuals, and direct interaction.",
-      "Exploring Next.js, TypeScript, Tailwind, shadcn/ui, authentication, database modeling, and deployment workflows.",
-      "Using side projects to sharpen product thinking, interface quality, and full-stack execution.",
-    ],
-  },
-  {
-    company: "Instituto Politécnico de Santarém",
-    role: "Software development student",
-    date: "2022 - 2024",
-    bullets: [
-      "Built programming, database, and web development fundamentals while shipping small practical projects.",
-      "Combined academic work with real implementations, from interfaces to backend logic and data handling.",
-      "Developed the habit of turning abstract requirements into structured, usable software.",
-    ],
-  },
-];
-
-const stack = [
-  {
-    title: "Frontend",
-    subtitle: "Interface, rendering, and product feel.",
-    items: ["Next.js", "TypeScript", "React", "Tailwind CSS", "shadcn/ui"],
-  },
-  {
-    title: "Backend",
-    subtitle: "Application logic and business workflows.",
-    items: [
-      "C#",
-      "ASP.NET",
-      "Razor",
-      "Entity Framework",
-      "Node.js",
-      "Route Handlers",
-      "Better Auth",
-      "Zod",
-    ],
-  },
-  {
-    title: "Data",
-    subtitle: "Persistence, queries, and operational data.",
-    items: [
-      "SQL Server",
-      "PostgreSQL",
-      "Drizzle",
-      "Schemas",
-      "Forms",
-      "Exports",
-    ],
-  },
-  {
-    title: "Tools",
-    subtitle: "Design, quality, and delivery workflow.",
-    items: [
-      "Git",
-      "Vercel",
-      "Biome",
-      "Google Fonts",
-      "next-themes",
-      "Lucide Icons",
-      "PHC integrations",
-    ],
-  },
-];
+const currentYear = new Date().getFullYear();
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(17,17,17,0.04),transparent_36%),linear-gradient(180deg,rgba(17,17,17,0.02),transparent_24%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_24%)]" />
-
-      <Container className="py-4 sm:py-6">
-        <header className="flex flex-col gap-4 border-border border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center justify-between gap-4">
-            <a
-              className="font-medium text-sm tracking-[-0.02em] transition-colors hover:text-muted-foreground"
-              href="#top"
-            >
+    <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
+      <Container className="sticky top-0 z-20 pt-3 sm:pt-5">
+        <header className="surface-noise flex min-h-13 items-center justify-between border border-border/80 px-3 sm:px-4">
+          <a className="group flex items-center gap-2.5" href="#top">
+            <span className="grid size-7 place-items-center bg-primary font-mono font-semibold text-[10px] text-primary-foreground">
+              DP
+            </span>
+            <span className="font-medium text-sm tracking-[-0.03em]">
               Diogo Paulos
-            </a>
-            <div className="sm:hidden">
-              <ThemeToggle />
-            </div>
+            </span>
+          </a>
+          <div className="flex items-center gap-1">
+            <nav
+              aria-label="Primary"
+              className="hidden items-center gap-1 md:flex"
+            >
+              {primaryNavigation.map((item) => (
+                <Button asChild key={item.href} size="sm" variant="ghost">
+                  <a href={item.href}>{item.label}</a>
+                </Button>
+              ))}
+            </nav>
+            <details className="relative md:hidden">
+              <summary className="inline-flex h-8 cursor-pointer list-none items-center rounded-sm border border-border bg-background px-2.5 font-medium text-sm marker:content-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring">
+                Menu
+              </summary>
+              <nav
+                aria-label="Mobile primary"
+                className="surface-noise absolute top-10 right-0 grid w-40 gap-1 border border-border p-2"
+              >
+                {primaryNavigation.map((item) => (
+                  <a
+                    className="px-3 py-2 text-sm hover:bg-muted focus-visible:bg-muted focus-visible:outline-none"
+                    href={item.href}
+                    key={item.href}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+            </details>
+            <ThemeToggle />
           </div>
-
-          <nav
-            aria-label="Primary"
-            className="flex flex-wrap items-center gap-1"
-          >
-            <Button asChild size="sm" variant="ghost">
-              <a href="#work">Work</a>
-            </Button>
-            <Button asChild size="sm" variant="ghost">
-              <a href="#projects">Projects</a>
-            </Button>
-            <Button asChild size="sm" variant="ghost">
-              <a href="#stack">Stack</a>
-            </Button>
-            <Button asChild size="sm" variant="ghost">
-              <a href="#contact">Contact</a>
-            </Button>
-            <div className="hidden sm:block">
-              <ThemeToggle />
-            </div>
-          </nav>
         </header>
       </Container>
 
-      <Container className="pt-8 sm:pt-12 lg:pt-16" id="top">
-        <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
-          <div className="space-y-7">
-            <div className="space-y-3">
-              <p className="font-mono text-muted-foreground text-xs uppercase tracking-[0.28em]">
-                Full-stack developer from Portugal
-              </p>
-              <h1 className="max-w-3xl font-semibold text-4xl tracking-[-0.065em] sm:text-5xl lg:text-6xl">
-                I build quiet web products and practical business tools.
-              </h1>
-              <p className="max-w-2xl text-base text-muted-foreground leading-7 sm:text-lg">
-                I&apos;m a full-stack developer at Bomsite and a software
-                development student based in Portugal. I work across Next.js,
-                C#, ASP.NET, SQL Server, and product interfaces, building
-                internal platforms, integrations, dashboards, and small personal
-                tools like Luma.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              <Button asChild size="sm" variant="outline">
-                <a href="#projects">View projects</a>
-              </Button>
-              <Button asChild size="sm" variant="outline">
-                <a href="mailto:dpaulos6@outlook.com">
-                  <Mail className="size-3.5" />
-                  Contact me
+      <Container
+        className="pt-16 pb-20 sm:pt-24 sm:pb-28 lg:pt-32 lg:pb-36"
+        id="top"
+      >
+        <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-end lg:gap-16">
+          <div>
+            <p className="section-label">Full-stack developer · Portugal</p>
+            <h1 className="mt-5 max-w-4xl font-semibold text-5xl tracking-[-0.075em] sm:text-6xl lg:text-7xl">
+              Building software
+              <span className="block text-muted-foreground">
+                from interface to infrastructure.
+              </span>
+            </h1>
+            <p className="mt-7 max-w-2xl text-base text-muted-foreground leading-7 sm:text-lg sm:leading-8">
+              I&apos;m Diogo, a Portuguese full-stack developer shaping
+              dependable applications, useful tooling, and backend systems
+              across .NET, TypeScript, Go, and Java.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              <Button asChild size="lg">
+                <a href="#projects">
+                  View projects
+                  <ArrowDownRight className="size-4" />
                 </a>
               </Button>
-              <Button asChild size="sm" variant="ghost">
+              <Button asChild size="lg" variant="outline">
                 <a
-                  href="https://github.com/dpaulos6"
-                  rel="noreferrer"
+                  href={siteConfig.links.github}
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
+                  <GitFork className="size-4" />
                   GitHub
                 </a>
               </Button>
+              <Button asChild size="lg" variant="outline">
+                <a
+                  href={siteConfig.links.linkedin}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Link2 className="size-4" />
+                  LinkedIn
+                </a>
+              </Button>
             </div>
-
-            <Card className="border-border/70 bg-card/90">
-              <CardHeader className="space-y-2">
-                <CardDescription>Current direction</CardDescription>
-                <CardTitle className="text-lg tracking-[-0.03em]">
-                  Minimal interfaces, useful systems, and reliable execution.
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="grid gap-3 text-muted-foreground text-sm leading-6 sm:grid-cols-3">
-                <div className="rounded-xl border border-border/70 bg-background/50 p-4">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.24em]">
-                    Work
-                  </p>
-                  <p className="mt-2">
-                    Business apps, PHC workflows, dashboards, and integrations.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-border/70 bg-background/50 p-4">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.24em]">
-                    Product
-                  </p>
-                  <p className="mt-2">
-                    Luma and small tools built around clear, practical use.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-border/70 bg-background/50 p-4">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.24em]">
-                    Taste
-                  </p>
-                  <p className="mt-2">
-                    Calm visuals, precise copy, strong hierarchy, no noise.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
-          <div className="lg:sticky lg:top-6">
-            <TerminalCard
-              lines={[
-                { label: "whoami", value: "Diogo Paulos" },
-                {
-                  label: "stack",
-                  value:
-                    "Next.js · TypeScript · C# · ASP.NET · SQL Server · Tailwind · shadcn/ui",
-                },
-                {
-                  label: "focus",
-                  value:
-                    "Clean interfaces, business tooling, integrations, and cashflow products.",
-                },
-                { label: "current", value: "Bomsite · Portugal" },
-                { label: "building", value: "Luma — see your money ahead." },
-              ]}
-              title="session"
-            />
-          </div>
+          <aside className="surface-noise border border-border/80 p-5 text-sm leading-6">
+            <div className="flex items-center justify-between border-border/70 border-b pb-4">
+              <p className="section-label">Working across</p>
+              <span className="size-2 bg-primary" />
+            </div>
+            <div className="mt-5 grid gap-4">
+              <div className="flex gap-3">
+                <Code2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                <p>
+                  <span className="block font-medium text-foreground">
+                    Product interfaces
+                  </span>
+                  <span className="text-muted-foreground">
+                    Web applications and developer tools.
+                  </span>
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <Server className="mt-0.5 size-4 shrink-0 text-primary" />
+                <p>
+                  <span className="block font-medium text-foreground">
+                    Reliable systems
+                  </span>
+                  <span className="text-muted-foreground">
+                    Services, data, deployment, and operations.
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 flex items-start gap-2 border-border/70 border-t pt-4 text-muted-foreground">
+              <MapPin className="mt-1 size-3.5 shrink-0" />
+              {siteConfig.location}
+            </div>
+          </aside>
         </section>
       </Container>
 
       <Section
-        description="A small set of projects and experiments shaped around utility, restraint, and clear product thinking."
-        eyebrow="Selected work"
-        id="projects"
-        title="Projects that feel like products"
+        description="Professional .NET delivery and independent systems work meet in one practice: treating interface, data, integration, and deployment as one coherent product responsibility."
+        eyebrow="Profile"
+        id="about"
+        title="Useful software, built with the whole system in view."
       >
-        <div className="grid gap-4 md:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard
-              description={project.description}
-              key={project.name}
-              name={project.name}
-              tags={project.tags}
+        <div className="surface-noise grid border border-border/80 md:grid-cols-3">
+          {[
+            [
+              "Web applications",
+              "Full-stack interfaces and product-oriented applications.",
+            ],
+            [
+              "Enterprise software",
+              "Business platforms, ERP integrations, and relational data.",
+            ],
+            [
+              "Systems & tooling",
+              "CLIs, Java services, infrastructure, and developer utilities.",
+            ],
+          ].map(([title, description]) => (
+            <article
+              className="border-border/80 border-b p-5 last:border-b-0 sm:p-6 md:border-r md:border-b-0 md:last:border-r-0"
+              key={title}
+            >
+              <h3 className="font-medium tracking-[-0.025em]">{title}</h3>
+              <p className="mt-2 text-muted-foreground text-sm leading-6">
+                {description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        description="Each role expanded the scope: programming foundations, data-focused interfaces, enterprise platforms, and full-time end-to-end delivery."
+        eyebrow="Experience"
+        id="experience"
+        title="Professional progression"
+      >
+        <div className="relative grid gap-3 before:absolute before:inset-y-5 before:left-1.5 before:w-px before:bg-border sm:gap-4">
+          {experiences.map((experience) => (
+            <ExperienceItem
+              {...experience}
+              className="ml-5 sm:ml-7"
+              key={experience.role}
             />
           ))}
         </div>
       </Section>
 
       <Section
-        description="A short view of where the work comes from: real business software, independent product building, and formal study."
-        eyebrow="Experience"
-        id="work"
-        title="Work and studies"
+        description="Four representative projects, from real-time communication to financial systems, service architecture, and release automation."
+        eyebrow="Selected projects"
+        id="projects"
+        title="Selected systems and tools"
       >
         <div className="grid gap-4">
-          {experience.map((item) => (
-            <ExperienceItem
-              bullets={item.bullets}
-              company={item.company}
-              date={item.date}
-              key={item.company}
-              role={item.role}
-            />
-          ))}
+          {projects
+            .filter((project) => "featured" in project && project.featured)
+            .map((project) => (
+              <ProjectCard {...project} key={project.name} />
+            ))}
+        </div>
+        <div className="mt-8 flex items-end justify-between gap-6">
+          <div>
+            <p className="section-label">Additional work</p>
+            <h3 className="mt-2 font-semibold text-xl tracking-[-0.035em]">
+              Small tools, focused utilities.
+            </h3>
+          </div>
+          <Boxes className="size-5 shrink-0 text-muted-foreground" />
+        </div>
+        <div className="mt-4 grid gap-3 lg:grid-cols-3">
+          {projects
+            .filter((project) => !("featured" in project && project.featured))
+            .map((project) => (
+              <ProjectCard {...project} compact key={project.name} />
+            ))}
         </div>
       </Section>
 
       <Section
-        description="The stack I use to move from interface to logic, data, integrations, and deployment."
-        eyebrow="Stack"
+        description="A working set organised by the problems it helps solve—not a claim of equally weighted expertise."
+        eyebrow="Technical stack"
         id="stack"
-        title="What I build with"
+        title="Tools across the system"
       >
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {stack.map((group) => (
-            <Card className="border-border/70 bg-card/90" key={group.title}>
-              <CardHeader className="space-y-2 p-5">
-                <CardDescription>{group.subtitle}</CardDescription>
-                <CardTitle className="text-base tracking-[-0.03em]">
-                  {group.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2 p-5 pt-0">
+        <div className="surface-noise grid border border-border/80 md:grid-cols-2 xl:grid-cols-3">
+          {stackGroups.map((group) => (
+            <article
+              className="border-border/80 border-b p-5 last:border-b-0 sm:p-7 md:p-6 md:odd:border-r xl:border-r xl:[&:nth-child(3n)]:border-r-0"
+              key={group.title}
+            >
+              <h3 className="font-medium tracking-[-0.025em]">{group.title}</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <TechBadge key={item}>{item}</TechBadge>
                 ))}
-              </CardContent>
-            </Card>
+              </div>
+            </article>
           ))}
         </div>
       </Section>
 
       <Section
-        description="For full-stack work, product experiments, or anything that should be minimal, fast, and precise."
+        description="Formal study alongside practical work in application development, data interfaces, and full-stack delivery."
+        eyebrow="Education"
+        id="education"
+        title="Education and languages"
+      >
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_14rem]">
+          <ol className="surface-noise divide-y divide-border/80 border border-border/80">
+            {education.map((item, index) => (
+              <li
+                className="grid gap-2 px-5 py-5 sm:grid-cols-[minmax(0,1fr)_9rem] sm:items-baseline sm:gap-6 sm:px-6 sm:py-6"
+                key={item.qualification}
+              >
+                <div>
+                  <h3
+                    className={
+                      index === 2
+                        ? "font-medium text-muted-foreground text-sm"
+                        : "font-medium tracking-[-0.02em]"
+                    }
+                  >
+                    {item.qualification}
+                  </h3>
+                  <p className="mt-1 text-muted-foreground text-sm leading-6">
+                    {item.institution}
+                  </p>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-[0.12em] sm:text-right">
+                  {item.period}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <div className="surface-noise border border-border/80 p-5">
+            <p className="section-label">Languages</p>
+            <dl className="mt-4 space-y-3 text-sm">
+              <div className="flex items-baseline justify-between gap-4">
+                <dt>Portuguese</dt>
+                <dd className="text-muted-foreground">Native</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4">
+                <dt>English</dt>
+                <dd className="text-muted-foreground">Advanced</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        className="pb-16 sm:pb-20"
+        description="For full-stack work, developer tooling, platform development, or systems that need both solid engineering and a precise interface."
         eyebrow="Contact"
         id="contact"
-        title="Let&apos;s keep it direct"
+        title="Start a conversation"
       >
-        <div className="flex flex-wrap gap-2">
-          <Button asChild variant="outline">
-            <a href="mailto:dpaulos6@outlook.com">
-              <Mail className="size-3.5" />
-              Email
-            </a>
-          </Button>
-          <Button asChild variant="outline">
+        <div className="surface-noise flex flex-col gap-6 border border-border/80 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <p className="max-w-md text-muted-foreground text-sm leading-6">
+            Available for thoughtful conversations around products, platforms,
+            and the systems that hold them together.
+          </p>
+          <CopyEmail email={siteConfig.email} />
+        </div>
+      </Section>
+
+      <Container className="pb-8 sm:pb-10">
+        <Separator />
+        <footer className="flex flex-col gap-5 py-6 text-muted-foreground text-sm sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-medium text-foreground">Diogo Paulos</p>
+            <p className="mt-1">Full-stack Developer · Portugal</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <a
-              href="https://github.com/dpaulos6"
-              rel="noreferrer"
+              className="hover:text-foreground"
+              href={siteConfig.links.github}
+              rel="noopener noreferrer"
               target="_blank"
             >
-              <ArrowUpRight className="size-3.5" />
               GitHub
             </a>
-          </Button>
-          <Button asChild variant="outline">
             <a
-              href="https://pt.linkedin.com/in/dpaulos6"
-              rel="noreferrer"
+              className="hover:text-foreground"
+              href={siteConfig.links.linkedin}
+              rel="noopener noreferrer"
               target="_blank"
             >
               LinkedIn
             </a>
-          </Button>
-          <Button asChild variant="outline">
             <a
-              href="https://www.instagram.com/dpaulos6"
-              rel="noreferrer"
-              target="_blank"
+              className="hover:text-foreground"
+              href={`mailto:${siteConfig.email}`}
             >
-              Instagram
+              Email
             </a>
-          </Button>
-        </div>
-      </Section>
-
-      <Container className="pb-8">
-        <Separator className="mb-4" />
-        <footer className="flex flex-col gap-2 text-muted-foreground text-sm sm:flex-row sm:items-center sm:justify-between">
-          <p>Minimal portfolio for Diogo Paulos.</p>
-          <p>
-            Built with Next.js, shadcn/ui, Tailwind, and theme-aware styles.
-          </p>
+            <span>© {currentYear}</span>
+          </div>
         </footer>
       </Container>
+
+      <script type="application/ld+json">
+        {JSON.stringify(personStructuredData)}
+      </script>
     </main>
   );
 }

@@ -12,7 +12,7 @@ function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 font-medium text-[10px] uppercase tracking-[0.28em] transition-colors",
+        "inline-flex items-center rounded-none border px-2 py-1 font-medium text-[10px] uppercase tracking-[0.14em] transition-colors",
         variant === "default" &&
           "border-transparent bg-primary text-primary-foreground",
         variant === "secondary" &&

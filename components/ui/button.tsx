@@ -5,7 +5,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-clip-padding font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 rounded-sm border border-transparent bg-clip-padding font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -21,17 +21,17 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-8 px-3 py-2 text-sm",
-        xs: "h-6 rounded-md px-2 text-xs",
-        sm: "h-7 rounded-md px-2.5 text-sm",
-        lg: "h-9 rounded-md px-4 text-sm",
+        xs: "h-6 rounded-sm px-2 text-xs",
+        sm: "h-7 rounded-sm px-2.5 text-sm",
+        lg: "h-9 rounded-sm px-4 text-sm",
         icon: "size-8",
-        "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm": "size-7 rounded-md",
+        "icon-xs": "size-6 rounded-sm [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm": "size-7 rounded-sm",
         "icon-lg": "size-9",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "outline",
       size: "default",
     },
   }
@@ -39,7 +39,7 @@ const buttonVariants = cva(
 
 function Button({
   className,
-  variant = "default",
+  variant = "outline",
   size = "default",
   asChild = false,
   ...props

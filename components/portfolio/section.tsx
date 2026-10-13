@@ -19,17 +19,17 @@ function Section({
   ...props
 }: SectionProps) {
   return (
-    <section className={cn("py-8 sm:py-10 lg:py-12", className)} {...props}>
+    <section className={cn("py-12 sm:py-16 lg:py-20", className)} {...props}>
       <Container>
         {(eyebrow || title || description) && (
-          <div className="mb-6 max-w-2xl space-y-3">
+          <div className="mb-8 max-w-3xl space-y-3 sm:mb-10">
             {eyebrow ? (
-              <p className="font-mono text-muted-foreground text-xs uppercase tracking-[0.24em]">
+              <p className="font-mono text-muted-foreground text-xs uppercase tracking-[0.14em]">
                 {eyebrow}
               </p>
             ) : null}
             {title ? (
-              <h2 className="font-semibold text-2xl tracking-[-0.04em] sm:text-3xl">
+              <h2 className="max-w-2xl font-semibold text-3xl tracking-[-0.05em] sm:text-4xl">
                 {title}
               </h2>
             ) : null}

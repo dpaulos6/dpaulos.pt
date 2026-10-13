@@ -10,7 +10,7 @@ function TechBadge({ children, className }: TechBadgeProps) {
   return (
     <Badge
       className={cn(
-        "rounded-md border-border/70 bg-background/60 font-mono text-[10px] text-foreground uppercase tracking-[0.16em]",
+        "rounded-none border-border/70 bg-background px-2 py-1 font-mono text-[10px] text-foreground normal-case tracking-[0.04em]",
         className
       )}
       variant="outline"

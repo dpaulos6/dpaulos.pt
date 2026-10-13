@@ -17,7 +17,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <Button aria-label="Toggle theme" size="sm" variant="outline">
-        Theme
+        <span className="hidden sm:inline">Theme</span>
       </Button>
     );
   }
@@ -38,7 +38,7 @@ export function ThemeToggle() {
       ) : (
         <Moon className="size-3.5" />
       )}
-      <span>{isDark ? "Light" : "Dark"}</span>
+      <span className="hidden sm:inline">{isDark ? "Light" : "Dark"}</span>
     </Button>
   );
 }
