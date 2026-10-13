@@ -124,7 +124,7 @@ export const projects = [
     kind: "Private ongoing ecosystem",
     featured: true,
     description:
-      "A modular Java ecosystem for a Paper server, architected as interconnected services with explicit integration boundaries, persistent data, access control, and operational tooling rather than isolated game plugins.",
+      "An interconnected, modular Minecraft server platform built in Java for Paper. ArcClaims and ArcIdentity are in development, with a broader roadmap spanning shared infrastructure, community systems, gameplay, and operations through explicit integration boundaries.",
     highlights: [
       "Designed modular Java services with provider abstractions, clear integration contracts, and backwards-compatible configuration behaviour.",
       "Implemented hierarchical access control, persistent storage, database migrations, audit events, and event-driven synchronisation.",
@@ -132,16 +132,153 @@ export const projects = [
       "Integrated with Paper, PlaceholderAPI, MariaDB, and optional third-party providers.",
       "Maintained and operated services within a Linux server environment.",
     ],
-    modules: [
+    moduleGroups: [
       {
-        name: "ArcClaims",
+        title: "Existing modules",
         description:
-          "A land-management module built around a GriefPrevention-backed metadata layer, supporting dynamic area resizing, ownership transfers, confirmation workflows, and migration verification.",
+          "Implemented functionality under active development; neither module is presented as complete.",
+        expanded: true,
+        modules: [
+          {
+            name: "ArcClaims",
+            status: "In Development",
+            description:
+              "Advanced GriefPrevention-backed land management: claims, trust permissions, dynamic resizing, ownership transfers, clan integration, administration, migrations, and reconciliation. Substantial existing functionality.",
+          },
+          {
+            name: "ArcIdentity",
+            status: "In Development",
+            description:
+              "Unified player identity combining ranks, clans, tags, and names, with provider abstractions, separate rendering, PlaceholderAPI integration, and safe configuration-folder migrations.",
+          },
+        ],
       },
       {
-        name: "ArcIdentity",
+        title: "Core ecosystem roadmap",
         description:
-          "A component-based identity layer separating snapshots from rendering, with provider interfaces, PlaceholderAPI namespaces, and safe configuration-folder migrations.",
+          "Original platform roadmap. These modules are planned, not confirmed implementations.",
+        modules: [
+          {
+            name: "ArcCore",
+            status: "Planned",
+            description:
+              "Shared infrastructure, configuration, database abstractions, internationalization, and common APIs.",
+          },
+          {
+            name: "ArcClans",
+            status: "Planned",
+            description:
+              "Clan management, permissions, relationships, and PvP/event integrations; intended to replace ClanAscend.",
+          },
+          {
+            name: "ArcChat",
+            status: "Planned",
+            description:
+              "Unified global, local, clan, staff, and hub chat channels.",
+          },
+          {
+            name: "ArcTags",
+            status: "Planned",
+            description:
+              "Custom, earned, and purchasable player tags integrated into ArcIdentity.",
+          },
+          {
+            name: "ArcStaff",
+            status: "Planned",
+            description:
+              "Staff administration with separate PLAY and STAFF modes and moderation utilities.",
+          },
+          {
+            name: "ArcEvents",
+            status: "Planned",
+            description:
+              "Shared framework for server events, competitions, and custom gameplay events.",
+          },
+          {
+            name: "ArcProgression",
+            status: "Planned",
+            description:
+              "Player progression, rewards, and long-term gameplay advancement.",
+          },
+          {
+            name: "ArcEconomy",
+            status: "Planned",
+            description:
+              "Economy systems, balancing, and integration with server gameplay.",
+          },
+          {
+            name: "ArcTravel",
+            status: "Planned",
+            description:
+              "Player transportation, including random teleportation and warps.",
+          },
+          {
+            name: "ArcBridge",
+            status: "Planned",
+            description:
+              "Cross-system integration connecting ArcSuite services and external platforms.",
+          },
+        ],
+      },
+      {
+        title: "Future Roadmap",
+        description:
+          "Exploratory expansion ideas, grouped by purpose. Names and scope may evolve; these are not committed standalone products.",
+        modules: [
+          {
+            name: "ArcWatchlist",
+            status: "Planned",
+            description:
+              "Suspicious-player monitoring, investigation timelines, and evidence correlation across GrimAC, MinerTrack, CoreProtect, and staff observations.",
+          },
+          {
+            name: "ArcProfiles / ArcNicknames",
+            status: "Planned",
+            description:
+              "Unified player profile data, associated services, and nickname management.",
+          },
+          {
+            name: "ArcRewards / ArcCosmetics / Seasons",
+            status: "Planned",
+            description:
+              "Shared reward distribution, cosmetic rewards, and seasonal content.",
+          },
+          {
+            name: "ArcAudit / ArcAnalytics",
+            status: "Planned",
+            description:
+              "Centralised audit events, operational accountability, and server/gameplay analytics.",
+          },
+          {
+            name: "ArcNotifications / ArcDiscord",
+            status: "Planned",
+            description:
+              "Shared notification delivery and Discord integration.",
+          },
+          {
+            name: "ArcJobs / Contracts / ArcMarket / Companies",
+            status: "Planned",
+            description:
+              "Gameplay jobs, contracts, player-driven markets, and business systems.",
+          },
+          {
+            name: "ArcPunishments / ArcAssistant",
+            status: "Planned",
+            description:
+              "Moderation punishment management, administrative assistance, and automation.",
+          },
+          {
+            name: "ArcItems / ArcModes",
+            status: "Planned",
+            description:
+              "Custom item functionality and gameplay mode management.",
+          },
+          {
+            name: "ArcAPI",
+            status: "Planned",
+            description: "Shared external integration interfaces.",
+          },
+        ],
       },
     ],
     tags: [
@@ -194,7 +331,7 @@ export const projects = [
         label: "GitHub",
       },
       {
-        href: "https://digestify.dev",
+        href: "https://digestify.dpaulos.pt",
         label: "Live site",
       },
     ],

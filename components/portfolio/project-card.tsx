@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { type ProjectModuleGroup, ProjectModules } from "./project-modules";
 import { ProjectVisual } from "./project-visual";
 import { TechBadge } from "./tech-badge";
 
@@ -21,10 +22,7 @@ type ProjectCardProps = ComponentProps<typeof Card> & {
   highlights: readonly string[];
   featured?: boolean;
   compact?: boolean;
-  modules?: ReadonlyArray<{
-    name: string;
-    description: string;
-  }>;
+  moduleGroups?: readonly ProjectModuleGroup[];
   links?: ReadonlyArray<{
     href: string;
     label: string;
@@ -40,7 +38,7 @@ function ProjectCard({
   highlights,
   featured = false,
   compact = false,
-  modules,
+  moduleGroups,
   links,
   ...props
 }: ProjectCardProps) {
@@ -100,23 +98,7 @@ function ProjectCard({
             ))}
           </ul>
         )}
-        {modules ? (
-          <div className="grid gap-2 border-border/70 border-t pt-4">
-            {modules.map((module) => (
-              <div
-                className="border border-border/60 bg-muted/45 p-3"
-                key={module.name}
-              >
-                <p className="font-medium text-sm tracking-[-0.02em]">
-                  {module.name}
-                </p>
-                <p className="mt-1 text-muted-foreground text-xs leading-5">
-                  {module.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : null}
+        {moduleGroups ? <ProjectModules groups={moduleGroups} /> : null}
         <div className="flex flex-wrap gap-1.5">
           {tags.map((tag) => (
             <TechBadge key={tag}>{tag}</TechBadge>

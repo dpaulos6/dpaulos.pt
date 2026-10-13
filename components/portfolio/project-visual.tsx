@@ -88,12 +88,12 @@ function PocktVisual() {
 
 function ArcSuiteVisual() {
   return (
-    <Preview label="ArcSuite / module boundaries">
+    <Preview label="ArcSuite / existing modules · In Development">
       <div className="text-center">
         <div className="mx-auto w-fit border border-border bg-muted/40 px-5 py-2">
           <p className="font-medium">ArcSuite</p>
           <p className="mt-1 text-[10px] text-muted-foreground">
-            Modular Java ecosystem
+            Modular Minecraft server platform
           </p>
         </div>
         <div aria-hidden="true" className="mx-auto h-4 w-px bg-border" />
